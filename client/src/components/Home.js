@@ -54,13 +54,13 @@ const Home = ({ user, logout }) => {
     return data;
   };
 
-  const sendMessage = (data, body) => {
+  const sendMessage = useCallback((data, body) => {
     socket.emit("new-message", {
       message: data.message,
       recipientId: body.recipientId,
       sender: data.sender,
     });
-  };
+  },[socket]);
 
   const postMessage = async (body) => {
     try {
@@ -80,14 +80,14 @@ const Home = ({ user, logout }) => {
 
   const addNewConvo = useCallback(
     (recipientId, message) => {
-      conversations.forEach((convo) => {
+      setConversations(conversations.map((convo) => {
         if (convo.otherUser.id === recipientId) {
           convo.messages.push(message);
           convo.latestMessageText = message.text;
           convo.id = message.conversationId;
-        }
-      });
-      setConversations(conversations);
+        } 
+        return convo;
+      }));
     },
     [setConversations, conversations],
   );
@@ -105,13 +105,13 @@ const Home = ({ user, logout }) => {
         setConversations((prev) => [newConvo, ...prev]);
       }
 
-      conversations.forEach((convo) => {
+      setConversations(conversations.map((convo) => {
         if (convo.id === message.conversationId) {
           convo.messages.push(message);
           convo.latestMessageText = message.text;
-        }
-      });
-      setConversations(conversations);
+        } 
+        return convo;
+      }));
     },
     [setConversations, conversations],
   );
