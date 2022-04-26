@@ -8,7 +8,11 @@ const Messages = (props) => {
 
   return (
     <Box>
-      {messages.map((message) => {
+      {messages
+        .sort((prev,curr) => 
+          moment(prev.createdAt).isBefore(curr.createdAt)? -1:1
+        )
+        .map((message) => {
         const time = moment(message.createdAt).format('h:mm');
 
         return message.senderId === userId ? (
@@ -21,7 +25,8 @@ const Messages = (props) => {
             otherUser={otherUser}
           />
         );
-      })}
+      })
+      }
     </Box>
   );
 };
