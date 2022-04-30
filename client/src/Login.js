@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import {
   Grid,
   Box,
-  Button,
   FormControl,
   TextField,
 } from '@material-ui/core';
@@ -11,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ChatOverlay from './components/LoginSignup/ChatOverlay'
 import SwitchPage from './components/LoginSignup/SwitchPage'
 import Greeting from './components/LoginSignup/Greeting';
+import XLButton from './components/LoginSignup/XLButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,16 +27,16 @@ const useStyles = makeStyles((theme) => ({
   },
   formContainer: {
     margin: 'auto', 
-    padding: '36px', 
-    height: '80%',
-    width: '50%',
+    padding: '2rem', 
+    height: '100%',
+    width: '60%',
   },
   formControl: {
     width:'100%'
   },
   buttonControl: {
     margin: 'auto',
-  }
+  },
 }));
 
 const signupLink = {
@@ -72,7 +72,7 @@ const Login = ({ user, login }) => {
         <Box className={classes.UIContainer}>
           <SwitchPage {...signupLink} />
         <Box className={classes.formContainer}>
-        <Greeting greeting="Welcome Back!"/>
+        <Greeting greeting="Welcome back!"/>
         <form onSubmit={handleLogin}>
           <Grid container spacing={4} direction='column'>
             <Grid item>
@@ -96,9 +96,7 @@ const Login = ({ user, login }) => {
               </FormControl>
             </Grid>
             <Grid item className={classes.buttonControl} >
-                <Button color="primary" type="submit" variant="contained" size="large" >
-                  Login
-                </Button>
+                <XLButton title="Login"/>
             </Grid>
           </Grid>
         </form>

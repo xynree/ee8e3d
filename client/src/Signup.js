@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ChatOverlay from "./components/LoginSignup/ChatOverlay";
 import SwitchPage from "./components/LoginSignup/SwitchPage";
 import Greeting from "./components/LoginSignup/Greeting";
+import XLButton from "./components/LoginSignup/XLButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,10 +28,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   formContainer: {
-    marginBottom: 'auto', 
-    padding: '24px', 
-    height: '40%',
-    width: '50%',
+    margin: 'auto', 
+    padding: '2rem', 
+    height: '100%',
+    width: '60%',
   },
   formControl: {
     width:'100%'
@@ -80,9 +81,9 @@ const Signup = ({ user, register }) => {
         <Box className={classes.UIContainer}>
           <SwitchPage {...loginLink}/>
         <Box className={classes.formContainer}>
-        <Greeting greeting="Create an Account."/>
+        <Greeting greeting="Create an account."/>
           <form onSubmit={handleRegister}>
-            <Grid container spacing={5} direction='column'>
+            <Grid container spacing={4} direction='column'>
               <Grid item>
                 <FormControl className={classes.formControl}>
                   <TextField
@@ -138,9 +139,7 @@ const Signup = ({ user, register }) => {
                 </FormControl>
               </Grid>
               <Grid item className={classes.buttonControl}>
-                <Button type="submit" color="primary" variant="contained" size="large" >
-                  Create
-                </Button>
+                <XLButton title="Create"/>
               </Grid>
             </Grid>
           </form>
