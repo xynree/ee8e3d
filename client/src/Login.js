@@ -62,7 +62,6 @@ const Login = ({ user, login }) => {
         <ChatOverlay />
       </Grid>
       <Grid item xs={7}>
-
         <Box className={classes.UIContainer}>
           <SwitchPage {...signupLink} />
         <Box className={classes.formContainer}>

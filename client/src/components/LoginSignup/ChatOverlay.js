@@ -2,10 +2,10 @@ import {
   Box,
   Typography,
 } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
 
-const ChatOverlay = () => {
-
-  const chatDisplayOverlay = {
+const useStyles = makeStyles((theme) => ({
+  chatOverlay: {  
     width:'100%',
     position: 'relative',
     height:'100vh',
@@ -17,18 +17,20 @@ const ChatOverlay = () => {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'top',
-    bgcolor: 'primary.main',
+    backgroundColor: theme.palette.primary.main,
     backgroundBlendMode: 'soft-light',
   }
+}));
 
+const ChatOverlay = () => {
+  const classes = useStyles();
   return (
-    <Box sx={chatDisplayOverlay}>
-    <img alt='chat' src='/assets/bubble.svg'/>
-    <Typography>
-      Converse with anyone with any language
-    </Typography>
-</Box>
-  );
-}
+    <Box className={classes.chatOverlay}>
+      <img alt='chat' src='/assets/bubble.svg'/>
+      <Typography>
+        Converse with anyone with any language
+      </Typography>
+    </Box>
+)};
 
 export default ChatOverlay;
