@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ChatOverlay from "./components/LoginSignup/ChatOverlay";
 import SwitchPage from "./components/LoginSignup/SwitchPage";
 import Greeting from "./components/LoginSignup/Greeting";
-import XLButton from "./components/LoginSignup/XLButton";
+import PrimaryButton from "./components/LoginSignup/PrimaryButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,10 +33,14 @@ const useStyles = makeStyles((theme) => ({
     width: '60%',
   },
   formControl: {
-    width:'100%'
+    width:'100%',
+    
   },
   buttonControl: {
     margin: 'auto',
+  },
+  input: {
+    fontSize: '8rem',
   }
 }));
 
@@ -138,7 +142,7 @@ const Signup = ({ user, register }) => {
                 </FormControl>
               </Grid>
               <Grid item className={classes.buttonControl}>
-                <XLButton title="Create"/>
+                <PrimaryButton title="Create"/>
               </Grid>
             </Grid>
           </form>

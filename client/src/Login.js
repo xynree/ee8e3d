@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ChatOverlay from './components/LoginSignup/ChatOverlay'
 import SwitchPage from './components/LoginSignup/SwitchPage'
 import Greeting from './components/LoginSignup/Greeting';
-import XLButton from './components/LoginSignup/XLButton';
+import PrimaryButton from './components/LoginSignup/PrimaryButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,7 +96,7 @@ const Login = ({ user, login }) => {
               </FormControl>
             </Grid>
             <Grid item className={classes.buttonControl} >
-                <XLButton title="Login"/>
+                <PrimaryButton title="Login"/>
             </Grid>
           </Grid>
         </form>

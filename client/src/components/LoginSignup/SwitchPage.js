@@ -4,7 +4,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import XLButton from './XLButton'
+import SwitchButton from './SwitchButton'
 
 const useStyles = makeStyles((theme) => ({
   switchContainer: {
@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   prompt: {
-    color: theme.palette.secondary.main
+    fontSize: '1.2rem',
+    color: theme.palette.info.main,
   },
   noLinkStyle: {
     textDecoration: 'none',
@@ -30,9 +31,9 @@ const SwitchPage = ({prompt, link, title}) => {
   const classes = useStyles()
   return (
     <Box className={classes.switchContainer}>
-    <Typography>{prompt}</Typography>
+    <Typography className={classes.prompt}>{prompt}</Typography>
     <Link href={link} to={link} className={classes.noLinkStyle}>
-      <XLButton  variant="outlined" title="Create Account"/>
+      <SwitchButton title={title}/>
     </Link>
   </Box>
   );

@@ -4,19 +4,19 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: '1rem',
-    padding: '1.2rem 4rem 1.2rem 4rem',
+    padding: '1rem 4rem 1rem 4rem',
     fontWeight: '900',
     fontSize: '1.4rem',
   },
 }));
 
-const XLButton = ({ color="primary", title, variant="contained" }) => {
+const PrimaryButton = ({ color="primary", title }) => {
   const classes = useStyles()
   return (
     <Button
       color={color}
       type="submit"
-      variant={variant}
+      variant="contained"
       className={classes.button}
     >
       {title}
@@ -24,4 +24,4 @@ const XLButton = ({ color="primary", title, variant="contained" }) => {
   );
 };
 
-export default XLButton;
+export default PrimaryButton;
