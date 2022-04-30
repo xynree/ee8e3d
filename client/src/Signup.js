@@ -27,9 +27,16 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   formContainer: {
-    margin: 'auto', 
-    padding: '36px', 
-    height: '60%'
+    marginBottom: 'auto', 
+    padding: '24px', 
+    height: '40%',
+    width: '50%',
+  },
+  formControl: {
+    width:'100%'
+  },
+  buttonControl: {
+    margin: 'auto',
   }
 }));
 
@@ -75,9 +82,9 @@ const Signup = ({ user, register }) => {
         <Box className={classes.formContainer}>
         <Greeting greeting="Create an Account."/>
           <form onSubmit={handleRegister}>
-            <Grid>
-              <Grid>
-                <FormControl>
+            <Grid container spacing={5} direction='column'>
+              <Grid item>
+                <FormControl className={classes.formControl}>
                   <TextField
                     aria-label="username"
                     label="Username"
@@ -87,8 +94,8 @@ const Signup = ({ user, register }) => {
                   />
                 </FormControl>
               </Grid>
-              <Grid>
-                <FormControl>
+              <Grid item>
+                <FormControl className={classes.formControl}>
                   <TextField
                     label="E-mail address"
                     aria-label="e-mail address"
@@ -98,8 +105,9 @@ const Signup = ({ user, register }) => {
                   />
                 </FormControl>
               </Grid>
-              <Grid>
-                <FormControl error={!!formErrorMessage.confirmPassword}>
+              <Grid item>
+                <FormControl error={!!formErrorMessage.confirmPassword}
+                className={classes.formControl}>
                   <TextField
                     aria-label="password"
                     label="Password"
@@ -113,8 +121,9 @@ const Signup = ({ user, register }) => {
                   </FormHelperText>
                 </FormControl>
               </Grid>
-              <Grid>
-                <FormControl error={!!formErrorMessage.confirmPassword}>
+              <Grid item>
+                <FormControl error={!!formErrorMessage.confirmPassword}
+                className={classes.formControl}>
                   <TextField
                     label="Confirm Password"
                     aria-label="confirm password"
@@ -128,9 +137,11 @@ const Signup = ({ user, register }) => {
                   </FormHelperText>
                 </FormControl>
               </Grid>
-              <Button type="submit" color="primary" variant="contained" size="large">
-                Create
-              </Button>
+              <Grid item className={classes.buttonControl}>
+                <Button type="submit" color="primary" variant="contained" size="large" >
+                  Create
+                </Button>
+              </Grid>
             </Grid>
           </form>
         </Box>

@@ -28,7 +28,14 @@ const useStyles = makeStyles((theme) => ({
   formContainer: {
     margin: 'auto', 
     padding: '36px', 
-    height: '60%'
+    height: '80%',
+    width: '50%',
+  },
+  formControl: {
+    width:'100%'
+  },
+  buttonControl: {
+    margin: 'auto',
   }
 }));
 
@@ -67,9 +74,9 @@ const Login = ({ user, login }) => {
         <Box className={classes.formContainer}>
         <Greeting greeting="Welcome Back!"/>
         <form onSubmit={handleLogin}>
-          <Grid item>
-            <Grid>
-              <FormControl margin="normal" required>
+          <Grid container spacing={4} direction='column'>
+            <Grid item>
+              <FormControl margin="normal" required className={classes.formControl} >
                 <TextField
                   aria-label="username"
                   label="username"
@@ -78,18 +85,20 @@ const Login = ({ user, login }) => {
                 />
               </FormControl>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button color="primary" type="submit" variant="contained" size="large">
-                Login
-              </Button>
+            <Grid item>
+              <FormControl margin="normal" required className={classes.formControl} >
+                <TextField
+                  label="password"
+                  aria-label="password"
+                  type="password"
+                  name="password"
+                />
+              </FormControl>
+            </Grid>
+            <Grid item className={classes.buttonControl} >
+                <Button color="primary" type="submit" variant="contained" size="large" >
+                  Login
+                </Button>
             </Grid>
           </Grid>
         </form>

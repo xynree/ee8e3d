@@ -10,12 +10,11 @@ const SwitchPage = ({prompt, link, title}) => {
     <Box
     sx={{
       display: "flex",
-      gap: "18px",
+      gap: "2rem",
       width: "100%",
       height: "20%",
       boxSizing: "border-box",
       padding: "48px",
-      margin: "auto",
       justifyContent: "flex-end",
     }}
   >
