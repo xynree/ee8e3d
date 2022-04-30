@@ -1,16 +1,46 @@
 import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   Grid,
   Box,
-  Typography,
   Button,
   FormControl,
   TextField,
 } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+import ChatOverlay from './components/LoginSignup/ChatOverlay'
+import SwitchPage from './components/LoginSignup/SwitchPage'
+import Greeting from './components/LoginSignup/Greeting';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  UIContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "100vh",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  formContainer: {
+    margin: 'auto', 
+    padding: '36px', 
+    height: '60%'
+  }
+}));
+
+const signupLink = {
+  prompt: "Don't have an account?",
+  link: '/register',
+  title: 'Create Account'
+}
 
 const Login = ({ user, login }) => {
   const history = useHistory();
+  const classes = useStyles();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -26,55 +56,17 @@ const Login = ({ user, login }) => {
     if (user && user.id) history.push('/home');
   }, [user, history]);
 
-  const chatDisplayOverlay = {
-    width:'100%',
-    position: 'relative',
-    height:'100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent:'center',
-    backgroundImage: `url('/assets/bg-img.png')`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'top',
-    bgcolor: 'primary.main',
-    backgroundBlendMode: 'soft-light',
-    '&::after': {
-      content: '""',
-      opacity: 0.7,
-      top:0,
-      left:0,
-      bottom:0,
-      right:0,
-      position: 'absolute',
-    }
-  }
-
-
   return (
-    <Grid container justifyContent="space-between" alignItems="center">
+    <Grid container className={classes.root}>
       <Grid item xs={5}>
-        <Box sx={chatDisplayOverlay}>
-            <img alt='chat' src='/assets/bubble.svg'/>
-            <Typography>
-              Converse with anyone with any language
-            </Typography>
-        </Box>
+        <ChatOverlay />
       </Grid>
-      <Grid item xs={7} direction="column" alignItems="center" justifyContent="center">
-        <Box sx={{
-          display: 'flex', flexDirection: 'column', 'width': '100%', 'height': '100vh', justifyContent: 'center', alignItems: 'center'
-          }}>
-          <Box sx={{display: 'flex', gap: '18px', width: '100%', height: '20%', boxSizing: 'border-box', padding: '48px', margin: 'auto', justifyContent: 'flex-end'}}>
-            <Typography >Don't have an account?</Typography>
-            <Link href="/register" to="/register">
-              <Button color="secondary" variant="contained" size='large'>Create Account</Button>
-            </Link>
-          </Box>
+      <Grid item xs={7}>
 
-        <Box sx={{margin: 'auto', padding: '36px', height: '60%'}}>
-        <Typography>Welcome Back!</Typography>
+        <Box className={classes.UIContainer}>
+          <SwitchPage {...signupLink} />
+        <Box className={classes.formContainer}>
+        <Greeting greeting="Welcome Back!"/>
         <form onSubmit={handleLogin}>
           <Grid item>
             <Grid>
