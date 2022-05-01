@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
   buttonControl: {
     margin: 'auto',
   },
+  input: {
+    fontSize: '1.2rem',
+  }
 }));
 
 const signupLink = {
@@ -74,24 +77,44 @@ const Login = ({ user, login }) => {
         <Box className={classes.formContainer}>
         <Greeting greeting="Welcome back!"/>
         <form onSubmit={handleLogin}>
-          <Grid container spacing={4} direction='column'>
+          <Grid container spacing={2} direction='column'>
             <Grid item>
               <FormControl margin="normal" required className={classes.formControl} >
                 <TextField
                   aria-label="username"
-                  label="username"
+                  label="Username"
                   name="username"
                   type="text"
+                  InputProps={{
+                    classes: {
+                      input: classes.input
+                    }
+                  }}
+                  InputLabelProps={{
+                    classes: {
+                      input: classes.input
+                    }
+                  }}
                 />
               </FormControl>
             </Grid>
             <Grid item>
               <FormControl margin="normal" required className={classes.formControl} >
                 <TextField
-                  label="password"
+                  label="Password"
                   aria-label="password"
                   type="password"
                   name="password"
+                  InputProps={{
+                    classes: {
+                      input: classes.input
+                    }
+                  }}
+                  InputLabelProps={{
+                    classes: {
+                      input: classes.input
+                    }
+                  }}
                 />
               </FormControl>
             </Grid>

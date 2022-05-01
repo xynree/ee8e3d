@@ -10,24 +10,31 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    background: `linear-gradient(${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+  },
+  overlay: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    opacity: 0.2,
     backgroundImage: `url('/assets/bg-img.png')`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "top",
-    backgroundColor: theme.palette.primary.main,
-    backgroundBlendMode: "soft-light",
   },
   text: {
     color: 'white',
     margin: '2rem',
     textAlign: 'center',
-    fontSize: '2.2rem',
+    fontSize: '1.5rem',
     width: '65%',
   },
   img: {
-    width: '6rem',
-    height: '6rem',
-    margin: '2rem',
+    width: '5rem',
+    height: '5rem',
+    margin: '1rem',
+    marginTop: 0,
+    zIndex: 1,
   }
 }));
 
@@ -36,6 +43,7 @@ const ChatOverlay = () => {
   return (
     <Box className={classes.chatOverlay}>
       <img alt="chat" src="/assets/bubble.svg" className={classes.img} />
+      <Box alt="People conversing" className={classes.overlay}></Box>
       <Typography className={classes.text}>
         Converse with anyone with any language
       </Typography>

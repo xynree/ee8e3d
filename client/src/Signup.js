@@ -86,7 +86,7 @@ const Signup = ({ user, register }) => {
         <Box className={classes.formContainer}>
         <Greeting greeting="Create an account."/>
           <form onSubmit={handleRegister}>
-            <Grid container spacing={4} direction='column'>
+            <Grid container spacing={2} direction='column'>
               <Grid item>
                 <FormControl className={classes.formControl}>
                   <TextField

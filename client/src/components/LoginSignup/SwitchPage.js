@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   prompt: {
-    fontSize: '1.2rem',
     color: theme.palette.info.main,
   },
   noLinkStyle: {
