@@ -1,5 +1,5 @@
-import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -10,13 +10,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PrimaryButton = ({ color="primary", title }) => {
+const PrimaryButton = ({ color='primary', title }) => {
   const classes = useStyles()
   return (
     <Button
       color={color}
-      type="submit"
-      variant="contained"
+      type='submit'
+      variant='contained'
       className={classes.button}
     >
       {title}

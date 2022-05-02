@@ -1,21 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {
   Box,
   Typography,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import SwitchButton from './SwitchButton'
 
 const useStyles = makeStyles((theme) => ({
   switchContainer: {
-    display: "flex",
-    gap: "1rem",
-    width: "100%",
-    height: '20%',
-    boxSizing: "border-box",
-    padding: "4rem",
-    marginRight: "3rem",
-    justifyContent: "flex-end",
+    display: 'flex',
+    gap: '1rem',
+    width: '100%',
+    boxSizing: 'border-box',
+    padding: '4vh',
+    marginBottom: 'auto',
+    justifyContent: 'flex-end',
     alignItems: 'center'
   },
   prompt: {

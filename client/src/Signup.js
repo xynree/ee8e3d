@@ -17,38 +17,38 @@ const useStyles = makeStyles((theme) => ({
   root: {
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  UIContainer: {
-    display: "flex",
-    flexDirection: "column",
+    position: "relative",
     width: "100%",
     height: "100vh",
-    justifyContent: "center",
+  },
+  UIGrid: {
+    display: "flex",
+    flexDirection: "column",
+    overflow: "scroll",
+    height: "100%",
+    justifyContent: "flex-start",
     alignItems: "center",
+    gap: "0.6rem",
   },
   formContainer: {
-    margin: 'auto', 
-    padding: '2rem', 
-    height: '100%',
-    width: '60%',
+    margin: "auto",
+    padding: "2rem",
+    height: "100%",
+    width: "60%",
   },
   formControl: {
-    width:'100%',
-    
+    width: "100%",
   },
   buttonControl: {
-    margin: 'auto',
+    margin: "auto",
   },
-  input: {
-    fontSize: '8rem',
-  }
 }));
 
 const loginLink = {
-  prompt: 'Need to log in?',
-  link: '/login',
-  title: 'Login'
-}
+  prompt: "Need to log in?",
+  link: "/login",
+  title: "Login",
+};
 
 const Signup = ({ user, register }) => {
   const history = useHistory();
@@ -77,16 +77,15 @@ const Signup = ({ user, register }) => {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={5}>
+      <Grid item sm={5} xs={12}>
         <ChatOverlay />
       </Grid>
-      <Grid item xs={7}>
-        <Box className={classes.UIContainer}>
-          <SwitchPage {...loginLink}/>
+      <Grid item sm={7} xs={12} className={classes.UIGrid}>
+        <SwitchPage {...loginLink} />
         <Box className={classes.formContainer}>
-        <Greeting greeting="Create an account."/>
+          <Greeting greeting="Create an account." />
           <form onSubmit={handleRegister}>
-            <Grid container spacing={2} direction='column'>
+            <Grid container spacing={2} direction="column">
               <Grid item>
                 <FormControl className={classes.formControl}>
                   <TextField
@@ -110,8 +109,10 @@ const Signup = ({ user, register }) => {
                 </FormControl>
               </Grid>
               <Grid item>
-                <FormControl error={!!formErrorMessage.confirmPassword}
-                className={classes.formControl}>
+                <FormControl
+                  error={!!formErrorMessage.confirmPassword}
+                  className={classes.formControl}
+                >
                   <TextField
                     aria-label="password"
                     label="Password"
@@ -126,8 +127,10 @@ const Signup = ({ user, register }) => {
                 </FormControl>
               </Grid>
               <Grid item>
-                <FormControl error={!!formErrorMessage.confirmPassword}
-                className={classes.formControl}>
+                <FormControl
+                  error={!!formErrorMessage.confirmPassword}
+                  className={classes.formControl}
+                >
                   <TextField
                     label="Confirm Password"
                     aria-label="confirm password"
@@ -142,11 +145,10 @@ const Signup = ({ user, register }) => {
                 </FormControl>
               </Grid>
               <Grid item className={classes.buttonControl}>
-                <PrimaryButton title="Create"/>
+                <PrimaryButton title="Create" />
               </Grid>
             </Grid>
           </form>
-        </Box>
         </Box>
       </Grid>
     </Grid>

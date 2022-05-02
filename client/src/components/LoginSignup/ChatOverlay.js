@@ -1,15 +1,16 @@
-import { Box, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Box, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   chatOverlay: {
-    width: "100%",
-    position: "relative",
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+    position: 'relative',
+    height: '100vh',
+    minHeight: '100%',
+    display: 'flex',
+    flexGrow: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     background: `linear-gradient(${theme.palette.primary.main}, ${theme.palette.primary.light})`,
   },
   overlay: {
@@ -18,16 +19,17 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     opacity: 0.2,
     backgroundImage: `url('/assets/bg-img.png')`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "top",
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'top',
   },
   text: {
     color: 'white',
     margin: '2rem',
     textAlign: 'center',
-    fontSize: '1.5rem',
+    fontSize: '1.8rem',
     width: '65%',
+    zIndex: 1,
   },
   img: {
     width: '5rem',
@@ -42,8 +44,8 @@ const ChatOverlay = () => {
   const classes = useStyles();
   return (
     <Box className={classes.chatOverlay}>
-      <img alt="chat" src="/assets/bubble.svg" className={classes.img} />
-      <Box alt="People conversing" className={classes.overlay}></Box>
+      <Box className={classes.overlay}></Box>
+      <img alt='chat' src='/assets/bubble.svg' className={classes.img} />
       <Typography className={classes.text}>
         Converse with anyone with any language
       </Typography>
