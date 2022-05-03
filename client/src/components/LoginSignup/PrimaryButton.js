@@ -4,8 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: '1rem',
-    padding: '0.7rem 3rem 0.7rem 3rem',
-    fontWeight: '900',
+    marginTop: '1.5rem',
+    padding: '1rem 3.625rem 1rem 3.625rem',
+    fontWeight: '700',
     fontSize: '1rem',
   },
 }));

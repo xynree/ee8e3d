@@ -4,10 +4,10 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   greeting: {
       width: '100%',
-      fontSize: '2rem',
-      fontWeight: '800',
-      marginTop: '1rem',
-      marginBottom: '1rem'
+      fontSize: '26px',
+      fontWeight: '600',
+      lineHeight: '40px',
+      marginBottom: '1.5rem'
   }
 }));
 const Greeting = ({ greeting }) => {

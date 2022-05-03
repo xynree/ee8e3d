@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     padding: "2rem",
     height: "100%",
-    width: "60%",
+    width: "63.4%"
   },
   formControl: {
     width: "100%",
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const loginLink = {
-  prompt: "Need to log in?",
+  prompt: "Already have an account?",
   link: "/login",
   title: "Login",
 };

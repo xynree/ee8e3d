@@ -10,32 +10,43 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     flexDirection: 'column',
     alignItems: 'center',
+    textAlign: 'center',
     justifyContent: 'center',
-    background: `linear-gradient(${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+    background: `linear-gradient(180deg, #3A8DFF 0%, #86B9FF 100%)`,
   },
   overlay: {
     width: '100%',
     height: '100%',
     position: 'absolute',
-    opacity: 0.2,
+    opacity: 0.15,
     backgroundImage: `url('/assets/bg-img.png')`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'top',
   },
   text: {
-    color: 'white',
-    margin: '2rem',
-    textAlign: 'center',
-    fontSize: '1.8rem',
-    width: '65%',
-    zIndex: 1,
+    fontSize: '26px',
+    lineHeight: '40px',
+    marginTop: '1rem'
   },
   img: {
-    width: '5rem',
-    height: '5rem',
+    width: '66px',
+    height: '66px',
     margin: '1rem',
     marginTop: 0,
+    zIndex: 1,
+  },
+  spacer: {
+    height: '30%',
+    width: '100%',
+    margin: 'auto',
+  },
+  content: {
+    height: '70%',
+    width: '65%',
+    margin: 'auto',
+    color: 'white',
+    textAlign: 'center',
     zIndex: 1,
   }
 }));
@@ -45,10 +56,13 @@ const ChatOverlay = () => {
   return (
     <Box className={classes.chatOverlay}>
       <Box className={classes.overlay}></Box>
-      <img alt='chat' src='/assets/bubble.svg' className={classes.img} />
-      <Typography className={classes.text}>
-        Converse with anyone with any language
-      </Typography>
+      <Box className={classes.spacer}></Box>
+      <Box className={classes.content}>
+        <img alt='chat' src='/assets/bubble.svg' className={classes.img} />
+        <Typography className={classes.text}>
+          Converse with anyone with any language
+        </Typography>
+      </Box>
     </Box>
   );
 };

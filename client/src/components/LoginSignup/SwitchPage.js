@@ -12,13 +12,14 @@ const useStyles = makeStyles((theme) => ({
     gap: '1rem',
     width: '100%',
     boxSizing: 'border-box',
-    padding: '4vh',
+    padding: '2vh',
     marginBottom: 'auto',
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
   prompt: {
     color: theme.palette.info.main,
+    fontSize: theme.typography.fontSize
   },
   noLinkStyle: {
     textDecoration: 'none',

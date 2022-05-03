@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     padding: "2rem",
     height: "100%",
-    width: "60%",
+    width: "63.4%",
   },
   formControl: {
     width: "100%",
@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
   },
   input: {
-    fontSize: "1.2rem",
-  },
+    fontSize: theme.typography.fontSize,
+  }
 }));
 
 const signupLink = {
@@ -75,7 +75,7 @@ const Login = ({ user, login }) => {
         <Box className={classes.formContainer}>
           <Greeting greeting="Welcome back!" />
           <form onSubmit={handleLogin}>
-            <Grid container spacing={2} direction="column">
+            <Grid container spacing={4} direction="column">
               <Grid item>
                 <FormControl
                   margin="normal"

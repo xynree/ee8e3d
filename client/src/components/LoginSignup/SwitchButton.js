@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: '1rem',
-    padding: '1rem 1.5rem 1rem 1.5rem',
-    fontWeight: '900',
-    fontSize: '1rem',
+    minWidth: '140px',
+    padding: '1.1rem 2.1rem 1.1rem 2.1rem',
+    fontSize: theme.typography.fontSize,
     backgroundColor: theme.palette.info.background,
     color: theme.palette.primary.main,
     '&:hover': {
