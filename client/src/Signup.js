@@ -5,7 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import ChatOverlay from "./components/LoginSignup/ChatOverlay";
 import SwitchPage from "./components/LoginSignup/SwitchPage";
 import Greeting from "./components/LoginSignup/Greeting";
-import InputForm from './components/LoginSignup/InputForm';
+import InputForm from "./components/LoginSignup/InputForm";
+import { loginLink, inputFields } from "./data/SignupData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,46 +46,6 @@ const useStyles = makeStyles((theme) => ({
     width: "63.4%"
   },
 }));
-
-const loginLink = {
-  prompt: "Already have an account?",
-  link: "/login",
-  title: "Login",
-};
-
-const inputFields = [
-  {
-    'ariaLabel': 'username', 
-    'label': 'Username',
-    'name': 'username',
-    'type': 'text',
-    'passwordConfirm': false,
-
-  }, 
-  {
-    'ariaLabel': 'e-mail address', 
-    'label': 'E-mail address',
-    'name': 'email',
-    'type': 'email',
-    'passwordConfirm': false,
-  }, 
-  {
-    ariaLabel: "password",
-    label: "Password",
-    name: "password",
-    type: "password",
-    inputProps: { minLength: 6 },
-    passwordConfirm: true,
-  }, 
-  {
-    label:"Confirm Password",
-    ariaLabel: "confirm password",
-    type: "password",
-    inputProps: { minLength: 6 },
-    name: "confirmPassword",
-    passwordConfirm: true,
-  }, 
-]
 
 const Signup = ({ user, register }) => {
   const history = useHistory();

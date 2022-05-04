@@ -6,6 +6,7 @@ import ChatOverlay from "./components/LoginSignup/ChatOverlay";
 import SwitchPage from "./components/LoginSignup/SwitchPage";
 import Greeting from "./components/LoginSignup/Greeting";
 import InputForm from "./components/LoginSignup/InputForm"
+import { signupLink, inputFields } from "./data/LoginData"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,29 +47,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const signupLink = {
-  prompt: `Don't have an account?`,
-  link: "/register",
-  title: "Create Account",
-};
-
-const inputFields = [
-  {
-    'ariaLabel': 'username', 
-    'label': 'Username',
-    'name': 'username',
-    'type': 'text',
-    'passwordConfirm': false,
-
-  }, 
-  {
-    ariaLabel: "password",
-    label: "Password",
-    name: "password",
-    type: "password",
-  }, 
-]
-
 const Login = ({ user, login }) => {
   const history = useHistory();
   const classes = useStyles();
@@ -92,7 +70,7 @@ const Login = ({ user, login }) => {
     fields: inputFields,
     error: null,
     btnTitle: 'Login'
-  }
+  };
 
   return (
     <Grid container className={classes.root}>
