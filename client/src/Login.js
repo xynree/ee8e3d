@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ChatOverlay from "./components/LoginSignup/ChatOverlay";
 import SwitchPage from "./components/LoginSignup/SwitchPage";
 import Greeting from "./components/LoginSignup/Greeting";
-import InputForm from "./components/LoginSignup/InputForm"
+import LoginSignupForm from "./components/LoginSignup/LoginSignupForm"
 import { signupLink, inputFields } from "./data/LoginData"
 
 const useStyles = makeStyles((theme) => ({
@@ -81,7 +81,7 @@ const Login = ({ user, login }) => {
         <SwitchPage {...signupLink} />
         <Box className={classes.formContainer}>
           <Greeting greeting="Welcome back!" />
-          <InputForm {...formFields}/>
+          <LoginSignupForm {...formFields}/>
         </Box>
       </Grid>
     </Grid>

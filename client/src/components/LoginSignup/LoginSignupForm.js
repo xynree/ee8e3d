@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InputForm = ({ submit, btnTitle, fields, error = null }) => {
+const LoginSignupForm = ({ submit, btnTitle, fields, error = null }) => {
   const classes = useStyles();
 
   return (
@@ -56,4 +56,4 @@ const InputForm = ({ submit, btnTitle, fields, error = null }) => {
   );
 };
 
-export default InputForm;
+export default LoginSignupForm;
