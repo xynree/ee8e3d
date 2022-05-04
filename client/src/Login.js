@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Grid, Box, FormControl, TextField } from "@material-ui/core";
+import { Grid, Box} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ChatOverlay from "./components/LoginSignup/ChatOverlay";
 import SwitchPage from "./components/LoginSignup/SwitchPage";
 import Greeting from "./components/LoginSignup/Greeting";
-import PrimaryButton from "./components/LoginSignup/PrimaryButton";
+import InputForm from "./components/LoginSignup/InputForm"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,15 +29,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "2rem",
     height: "100%",
     width: "63.4%",
-  },
-  formControl: {
-    width: "100%",
-  },
-  buttonControl: {
-    margin: "auto",
-  },
-  input: {
-    fontSize: theme.typography.fontSize,
   }
 }));
 
@@ -46,6 +37,23 @@ const signupLink = {
   link: "/register",
   title: "Create Account",
 };
+
+const inputFields = [
+  {
+    'ariaLabel': 'username', 
+    'label': 'Username',
+    'name': 'username',
+    'type': 'text',
+    'passwordConfirm': false,
+
+  }, 
+  {
+    ariaLabel: "password",
+    label: "Password",
+    name: "password",
+    type: "password",
+  }, 
+]
 
 const Login = ({ user, login }) => {
   const history = useHistory();
@@ -65,6 +73,13 @@ const Login = ({ user, login }) => {
     if (user && user.id) history.push("/home");
   }, [user, history]);
 
+  const formFields= {
+    submit: handleLogin,
+    fields: inputFields,
+    error: null,
+    btnTitle: 'Login'
+  }
+
   return (
     <Grid container className={classes.root}>
       <Grid item sm={5} xs={12} className={classes.chatOverlay}>
@@ -74,61 +89,7 @@ const Login = ({ user, login }) => {
         <SwitchPage {...signupLink} />
         <Box className={classes.formContainer}>
           <Greeting greeting="Welcome back!" />
-          <form onSubmit={handleLogin}>
-            <Grid container spacing={4} direction="column">
-              <Grid item>
-                <FormControl
-                  margin="normal"
-                  required
-                  className={classes.formControl}
-                >
-                  <TextField
-                    aria-label="username"
-                    label="Username"
-                    name="username"
-                    type="text"
-                    InputProps={{
-                      classes: {
-                        input: classes.input,
-                      },
-                    }}
-                    InputLabelProps={{
-                      classes: {
-                        input: classes.input,
-                      },
-                    }}
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item>
-                <FormControl
-                  margin="normal"
-                  required
-                  className={classes.formControl}
-                >
-                  <TextField
-                    label="Password"
-                    aria-label="password"
-                    type="password"
-                    name="password"
-                    InputProps={{
-                      classes: {
-                        input: classes.input,
-                      },
-                    }}
-                    InputLabelProps={{
-                      classes: {
-                        input: classes.input,
-                      },
-                    }}
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item className={classes.buttonControl}>
-                <PrimaryButton title="Login" />
-              </Grid>
-            </Grid>
-          </form>
+          <InputForm {...formFields}/>
         </Box>
       </Grid>
     </Grid>
