@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormControl, FilledInput, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';import MoodIcon from '@material-ui/icons/Mood';
+import AddImages from './AddImages';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const Input = ({ otherUser, conversationId, user, postMessage }) => {
   const classes = useStyles();
   const [text, setText] = useState('');
+  
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -64,8 +65,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
           onChange={handleChange}
         />
         <Box className={classes.icons} >
-          <MoodIcon className={classes.emojiIcon} />
-          <PhotoLibraryIcon className={classes.addImageIcon}/>
+          <AddImages />
         </Box>  
       </FormControl>
     </form>
