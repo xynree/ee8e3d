@@ -1,16 +1,55 @@
-import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
-} from '@material-ui/core';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { Grid, Box} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import ChatOverlay from "./components/LoginSignup/ChatOverlay";
+import SwitchPage from "./components/LoginSignup/SwitchPage";
+import Greeting from "./components/LoginSignup/Greeting";
+import LoginSignupForm from "./components/LoginSignup/LoginSignupForm"
+import { signupLink, inputFields } from "./data/LoginData"
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    position: "relative",
+    width: "100%",
+    height: "100vh",
+  },
+  overlayContainer: {
+    [theme.breakpoints.up('xs')]: {
+      width: '0%',
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '41.6%'
+    },
+  },
+  UIGrid: {
+    [theme.breakpoints.up('xs')]: {
+      width: '100%'
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '58.4%'
+    },
+    display: "flex",
+    flexDirection: "column",
+    overflow: "scroll",
+    height: "100%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    gap: "0.6rem",
+  },
+  formContainer: {
+    margin: "auto",
+    padding: "2rem",
+    height: "100%",
+    width: "63.4%",
+  }
+}));
 
 const Login = ({ user, login }) => {
   const history = useHistory();
+  const classes = useStyles();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -23,46 +62,28 @@ const Login = ({ user, login }) => {
   };
 
   useEffect(() => {
-    if (user && user.id) history.push('/home');
+    if (user && user.id) history.push("/home");
   }, [user, history]);
 
+  const formFields= {
+    submit: handleLogin,
+    fields: inputFields,
+    error: null,
+    btnTitle: 'Login'
+  };
+
   return (
-    <Grid container justifyContent="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Link href="/register" to="/register">
-            <Button>Register</Button>
-          </Link>
-        </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
-              </FormControl>
-            </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
+    <Grid container className={classes.root}>
+      <Grid className={classes.overlayContainer}>
+        <ChatOverlay />
+      </Grid>
+      <Grid item className={classes.UIGrid}>
+        <SwitchPage {...signupLink} />
+        <Box className={classes.formContainer}>
+          <Greeting greeting="Welcome back!" />
+          <LoginSignupForm {...formFields}/>
+        </Box>
+      </Grid>
     </Grid>
   );
 };
