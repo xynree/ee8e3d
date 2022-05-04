@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   overlayContainer: {
     [theme.breakpoints.up('xs')]: {
-      width: '100%'
+      width: '0%',
     },
     [theme.breakpoints.up('sm')]: {
       width: '41.6%'
