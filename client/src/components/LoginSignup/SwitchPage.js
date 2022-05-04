@@ -19,7 +19,10 @@ const useStyles = makeStyles((theme) => ({
   },
   prompt: {
     color: theme.palette.info.main,
-    fontSize: theme.typography.fontSize
+    fontSize: theme.typography.fontSize,
+    [theme.breakpoints.between('xs', 'sm')]: {
+      fontSize: '13px'
+    },
   },
   noLinkStyle: {
     textDecoration: 'none',

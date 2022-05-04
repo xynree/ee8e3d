@@ -15,7 +15,21 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100vh",
   },
+  overlayContainer: {
+    [theme.breakpoints.up('xs')]: {
+      width: '100%'
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '41.6%'
+    },
+  },
   UIGrid: {
+    [theme.breakpoints.up('xs')]: {
+      width: '100%'
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '58.4%'
+    },
     display: "flex",
     flexDirection: "column",
     overflow: "scroll",
@@ -106,10 +120,10 @@ const Signup = ({ user, register }) => {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item sm={5} xs={12}>
+      <Grid className={classes.overlayContainer}>
         <ChatOverlay />
       </Grid>
-      <Grid item sm={7} xs={12} className={classes.UIGrid}>
+      <Grid className={classes.UIGrid}>
         <SwitchPage {...loginLink} />
         <Box className={classes.formContainer}>
           <Greeting greeting="Create an account." />
