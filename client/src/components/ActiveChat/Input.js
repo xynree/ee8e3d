@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
-import { FormControl, FilledInput } from '@material-ui/core';
+import { FormControl, FilledInput, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';import MoodIcon from '@material-ui/icons/Mood';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     justifySelf: 'flex-end',
     marginTop: 15,
   },
   input: {
     height: 70,
-    backgroundColor: '#F4F6FA',
+    width: '100%',
+    backgroundColor: '#F4F6FA',    
     borderRadius: 8,
     marginBottom: 20,
   },
+  icons: {
+    color: theme.palette.secondary.main,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    gap: '0.8rem',
+    position: 'absolute',
+    width: '100%',
+    right: '1rem',
+    top: '25%',
+  }
 }));
 
 const Input = ({ otherUser, conversationId, user, postMessage }) => {
@@ -41,6 +54,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel>
+
         <FilledInput
           classes={{ root: classes.input }}
           disableUnderline
@@ -49,6 +63,10 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
           name="text"
           onChange={handleChange}
         />
+        <Box className={classes.icons} >
+          <MoodIcon className={classes.emojiIcon} />
+          <PhotoLibraryIcon className={classes.addImageIcon}/>
+        </Box>  
       </FormControl>
     </form>
   );
