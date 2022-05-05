@@ -55,14 +55,17 @@ const Home = ({ user, logout }) => {
     return data;
   };
 
+  // EDIT
   const sendMessage = (data, body) => {
     socket.emit("new-message", {
       message: data.message,
       recipientId: body.recipientId,
       sender: data.sender,
+      // attachments: [...url, url]
     });
   };
 
+  // EDIT
   const postMessage = async (body) => {
     try {
       const data = await saveMessage(body);
@@ -79,6 +82,7 @@ const Home = ({ user, logout }) => {
     }
   };
 
+  // EDIT
   const addNewConvo = useCallback(
     (recipientId, message) => {
       setConversations((prev) =>
@@ -97,6 +101,7 @@ const Home = ({ user, logout }) => {
     }, [],
   );
 
+  // WILL NEED TO ADD ATTACHMENTS
   const addMessageToConversation = useCallback(
     (data) => {
       // if sender isn't null, that means the message needs to be put in a brand new convo

@@ -1,41 +1,37 @@
 import React, { useState } from 'react';
-import { FormControl, FilledInput, Box } from '@material-ui/core';
+import { FormControl, InputBase } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddImages from './AddImages';
+import ImagePreview from './ImagePreview';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     justifySelf: 'flex-end',
     marginTop: 15,
+    backgroundColor: '#F4F6FA',
+    borderRadius: 8,
+    marginBottom: 20, 
+    padding: 0
   },
   input: {
     height: 70,
     width: '100%',
-    backgroundColor: '#F4F6FA',    
-    borderRadius: 8,
-    marginBottom: 20,
+    padding: '1rem'
   },
-  icons: {
-    color: theme.palette.secondary.main,
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    gap: '0.8rem',
-    position: 'absolute',
-    width: '100%',
-    right: '1rem',
-    top: '25%',
-  }
 }));
 
 const Input = ({ otherUser, conversationId, user, postMessage }) => {
   const classes = useStyles();
   const [text, setText] = useState('');
+  const [imgs, setImgs] = useState([]);
   
-
   const handleChange = (event) => {
     setText(event.target.value);
   };
+
+  const rmImg= (i) => {
+    setImgs(imgs=> imgs.filter((img, index) => i!== index ))
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -54,20 +50,19 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
 
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
-      <FormControl fullWidth hiddenLabel>
+        {imgs && <ImagePreview images={[imgs,setImgs]} rmImg={rmImg} />}
+        <FormControl fullWidth hiddenLabel>
+          <InputBase
+            classes={{ root: classes.input }}
+            disableUnderline
+            placeholder="Type something..."
+            value={text}
+            name="text"
+            onChange={handleChange}
+          />
 
-        <FilledInput
-          classes={{ root: classes.input }}
-          disableUnderline
-          placeholder="Type something..."
-          value={text}
-          name="text"
-          onChange={handleChange}
-        />
-        <Box className={classes.icons} >
-          <AddImages />
-        </Box>  
-      </FormControl>
+          <AddImages images={[imgs, setImgs]} />
+        </FormControl>
     </form>
   );
 };
