@@ -13,12 +13,13 @@ const Messages = (props) => {
         const time = moment(message.createdAt).format('h:mm');
 
         return message.senderId === userId ? (
-          <SenderBubble key={message.id} text={message.text} time={time} />
+          <SenderBubble key={message.id} text={message.text} imgs={message.attachments} time={time} />
         ) : (
           <OtherUserBubble
             key={message.id}
             text={message.text}
             time={time}
+            imgs={message.attachments}
             otherUser={otherUser}
           />
         );

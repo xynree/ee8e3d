@@ -62,6 +62,19 @@ const Home = ({ user, logout }) => {
     });
   };
 
+  const postImgs = (imgs) =>{
+    return imgs.map(async ({file})=> {
+      const form = new FormData();
+      form.append('file',  file)
+      form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+      form.append('api_key', process.env.REACT_APP_API_KEY)
+      form.append('folder', '/messenger')
+      const instance = axios.create()
+      const { data } = await instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
+      return data.secure_url
+    })
+  }
+
   // EDIT
   const postMessage = async (body) => {
     try {
@@ -231,6 +244,7 @@ const Home = ({ user, logout }) => {
           conversations={conversations}
           user={user}
           postMessage={postMessage}
+          postImgs={postImgs}
         />
       </Grid>
     </>

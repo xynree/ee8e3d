@@ -21,20 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const postImgs = (imgs) =>{
-  return imgs.map(async ({file})=> {
-    const form = new FormData();
-    form.append('file',  file)
-    form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-    form.append('api_key', process.env.REACT_APP_API_KEY)
-    form.append('folder', '/messenger')
-    const instance = axios.create()
-    const { data } = await instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
-    return data.secure_url
-  })
-}
-
-const Input = ({ otherUser, conversationId, user, postMessage }) => {
+const Input = ({ otherUser, conversationId, user, postMessage, postImgs }) => {
   const classes = useStyles();
   const [text, setText] = useState('');
   const [imgs, setImgs] = useState([]);
@@ -43,7 +30,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     setText(event.target.value);
   };
 
-  const rmImg= (i) => {
+  const rmImg = (i) => {
     setImgs((prev) => [...prev].filter((img, index) => i !== index ))
   }
 
