@@ -3,7 +3,6 @@ import { FormControl, InputBase } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddImages from './AddImages';
 import ImagePreview from './ImagePreview';
-import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
   root: {
