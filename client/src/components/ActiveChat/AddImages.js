@@ -30,41 +30,18 @@ const AddImages = ({setImgs}) => {
     inputRef.current.click();
   }
   const handleChange = (e) => {
-
-    console.log('change called')
     const files = e.target.files
-
     Array.from(files).forEach((file) =>
       setImgs((prev) => [...prev, {file, url: URL.createObjectURL(file)}] )
     )
-
     e.target.value = '';
-
-    // for sending FETCH
-    
-    // const form = new FormData();
-    // form.append('file',  e.target.files[0])
-    // form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-    // form.append('api_key', process.env.REACT_APP_API_KEY)
-    // form.append('folder', '/messenger')
-
-    // fetch('process.env.REACT_APP_CLOUDINARY_URL', {
-    //   method: "POST",
-    //   body: form
-    // })
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     setSentImg(data.secure_url)
-    //   });
-
 
   }
   return (
     <Box className={classes.iconsContainer}>
-    <IconButton>
-      <PhotoLibraryIcon onClick={handleClick} className={classes.icon}/></IconButton>
+    <IconButton onClick={handleClick}>
+      <PhotoLibraryIcon  className={classes.icon}/>
+      </IconButton>
     <input
       ref={inputRef} 
       type="file" 

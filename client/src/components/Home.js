@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = ({ user, logout }) => {
   const history = useHistory();
-
   const socket = useContext(SocketContext);
 
   const [conversations, setConversations] = useState([]);
@@ -55,13 +54,11 @@ const Home = ({ user, logout }) => {
     return data;
   };
 
-  // EDIT
   const sendMessage = (data, body) => {
     socket.emit("new-message", {
       message: data.message,
       recipientId: body.recipientId,
       sender: data.sender,
-      // attachments: [...url, url]
     });
   };
 
@@ -101,7 +98,6 @@ const Home = ({ user, logout }) => {
     }, [],
   );
 
-  // WILL NEED TO ADD ATTACHMENTS
   const addMessageToConversation = useCallback(
     (data) => {
       // if sender isn't null, that means the message needs to be put in a brand new convo

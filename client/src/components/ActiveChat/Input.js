@@ -3,6 +3,7 @@ import { FormControl, InputBase } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddImages from './AddImages';
 import ImagePreview from './ImagePreview';
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const postImgs = (imgs) =>{
+  return imgs.map(async ({file})=> {
+    const form = new FormData();
+    form.append('file',  file)
+    form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+    form.append('api_key', process.env.REACT_APP_API_KEY)
+    form.append('folder', '/messenger')
+    const instance = axios.create()
+    const { data } = await instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
+    return data.secure_url
+  })
+}
+
 const Input = ({ otherUser, conversationId, user, postMessage }) => {
   const classes = useStyles();
   const [text, setText] = useState('');
@@ -30,7 +44,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
   };
 
   const rmImg= (i) => {
-    setImgs(imgs=> imgs.filter((img, index) => i!== index ))
+    setImgs((prev) => [...prev].filter((img, index) => i !== index ))
   }
 
   const handleSubmit = async (event) => {
@@ -38,14 +52,21 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     const form = event.currentTarget;
     const formElements = form.elements;
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
+
+    let urls;
+    if (imgs.length) {
+      urls = await Promise.all(postImgs(imgs));
+    }
     const reqBody = {
       text: formElements.text.value,
       recipientId: otherUser.id,
       conversationId,
       sender: conversationId ? null : user,
+      ...(urls && { attachments: urls})
     };
     await postMessage(reqBody);
     setText('');
+    setImgs([]);
   };
 
   return (
@@ -54,7 +75,6 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
         <FormControl fullWidth hiddenLabel>
           <InputBase
             classes={{ root: classes.input }}
-            disableUnderline
             placeholder="Type something..."
             value={text}
             name="text"

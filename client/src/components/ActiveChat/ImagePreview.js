@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ImagePreview = ({imgs, rmImg}) => {
   const classes = useStyles()
-  console.log(imgs)
 
   return (
     <Box className={classes.previewContainer}>
