@@ -43,9 +43,9 @@ const OtherUserBubble = ({ text, time, otherUser, imgs }) => {
         className={classes.avatar}
       />
       <Box>
-        <Typography className={classes.usernameDate}>
+        {(imgs || text) && <Typography className={classes.usernameDate}>
           {otherUser.username} {time}
-        </Typography>
+        </Typography>}
         {imgs && <ImageMessages imgs={imgs}/>}
         <Box className={classes.bubble}>
           {text && <Typography className={classes.text}>{text}</Typography>}

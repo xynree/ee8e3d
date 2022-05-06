@@ -64,17 +64,21 @@ const Home = ({ user, logout }) => {
 
   const postImgs = (imgs) => imgs.map(
     async ({file})=> {
-      const form = new FormData();
-      form.append('file',  file)
-      form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-      form.append('api_key', process.env.REACT_APP_API_KEY)
-      form.append('folder', '/messenger')
-      const instance = axios.create()
-      const { data } = await instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
-      if (!data) throw new Error('Could not post image.')
-      return data.secure_url
-  })
+      try {
+        const form = new FormData();
+        form.append('file',  file)
+        form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+        form.append('api_key', process.env.REACT_APP_API_KEY)
+        form.append('folder', process.env.REACT_APP_CLOUDINARY_FOLDER)
 
+        const instance = axios.create()
+        const { data } = await instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
+
+        return data.secure_url
+      } catch (error) {
+        console.error(error);
+      }
+  })
 
   const postMessage = async (body) => {
     try {
