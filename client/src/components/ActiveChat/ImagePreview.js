@@ -6,7 +6,6 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 const useStyles = makeStyles((theme) => ({
   previewContainer: {
      display: 'flex',
-     gap: '0.25rem',
      flexWrap: 'wrap',
   },
   cardContainer: {
@@ -14,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     alignContent: 'flex-end',
     padding: '0.5rem',
+    paddingRight: '0.25rem',
     flexDirection: 'column',
   },
   media: {
@@ -22,21 +22,18 @@ const useStyles = makeStyles((theme) => ({
   delete: {
     position: 'absolute',
     top: '0.5rem',
-    right: '0.5rem',
+    right: '0.25rem',
     width: '30px',
     height: '30px',
     zIndex: 1,
-
   },
   icon: {
-    zIndex: 1,
     color: theme.palette.secondary.background
   }
 }));
 
-const ImagePreview = ({images, rmImg}) => {
+const ImagePreview = ({imgs, rmImg}) => {
   const classes = useStyles()
-  const [imgs,] = images;
   console.log(imgs)
 
   return (
@@ -45,13 +42,13 @@ const ImagePreview = ({images, rmImg}) => {
       imgs.map(({url},i) => 
       <Box className={classes.cardContainer} key={url+i}>
       <Card elevation={3} >
-      <IconButton size="medium" color="secondary" className={classes.delete} onClick={() => rmImg(i)} >
+      <IconButton className={classes.delete} onClick={() => rmImg(i)} >
         <HighlightOffIcon className={classes.icon} />
       </IconButton>
           <CardMedia
               component="img"
               height="120"
-              alt="preview"
+              alt="Preview Image"
               image={url}
               className={classes.media}/>
         </Card>

@@ -23,21 +23,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AddImages = ({images}) => {
+const AddImages = ({setImgs}) => {
   const inputRef = useRef(null);
-  const [, setImgs] = images;
   const classes = useStyles();
-  const handleClick = () => {
+  const handleClick = (e) => {
     inputRef.current.click();
-    console.log('Image icon cliked.')
   }
   const handleChange = (e) => {
 
+    console.log('change called')
     const files = e.target.files
 
     Array.from(files).forEach((file) =>
       setImgs((prev) => [...prev, {file, url: URL.createObjectURL(file)}] )
     )
+
+    e.target.value = '';
 
     // for sending FETCH
     

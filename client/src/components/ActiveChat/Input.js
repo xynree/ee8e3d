@@ -50,7 +50,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
 
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
-        {imgs && <ImagePreview images={[imgs,setImgs]} rmImg={rmImg} />}
+        {imgs && <ImagePreview imgs={imgs} rmImg={rmImg} />}
         <FormControl fullWidth hiddenLabel>
           <InputBase
             classes={{ root: classes.input }}
@@ -60,8 +60,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
             name="text"
             onChange={handleChange}
           />
-
-          <AddImages images={[imgs, setImgs]} />
+          <AddImages setImgs={setImgs} />
         </FormControl>
     </form>
   );
