@@ -44,8 +44,8 @@ const AddImages = ({setImgs}) => {
       </IconButton>
     <input
       ref={inputRef} 
-      type="file" 
-      accept="image/png, image/jpeg"
+      type='file' 
+      accept='image/png, image/jpeg'
       multiple
       className={classes.input}
       onChange={handleChange}/>

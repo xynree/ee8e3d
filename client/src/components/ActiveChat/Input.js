@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import { FormControl, InputBase } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import AddImages from "./AddImages";
-import ImagePreview from "./ImagePreview";
+import React, { useState } from 'react';
+import { FormControl, InputBase } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import AddImages from './AddImages';
+import ImagePreview from './ImagePreview';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    justifySelf: "flex-end",
+    justifySelf: 'flex-end',
     marginTop: 15,
-    backgroundColor: "#F4F6FA",
+    backgroundColor: '#F4F6FA',
     borderRadius: 8,
     marginBottom: 20,
     padding: 0,
   },
   input: {
     height: 70,
-    width: "100%",
-    padding: "1rem",
+    width: '100%',
+    padding: '1rem',
   },
 }));
 
 const Input = ({ otherUser, conversationId, user, postMessage, postImgs }) => {
   const classes = useStyles();
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [imgs, setImgs] = useState([]);
 
   const handleChange = (event) => {
@@ -38,7 +38,7 @@ const Input = ({ otherUser, conversationId, user, postMessage, postImgs }) => {
     const form = event.currentTarget;
     const formElements = form.elements;
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
-    
+
     if (!imgs.length && !formElements.text.value) return;
 
     // To prevent double submitting while sending POST
@@ -58,7 +58,7 @@ const Input = ({ otherUser, conversationId, user, postMessage, postImgs }) => {
       ...(urls && { attachments: urls }),
     };
     await postMessage(reqBody);
-    setText("");
+    setText('');
   };
 
   return (
@@ -67,10 +67,10 @@ const Input = ({ otherUser, conversationId, user, postMessage, postImgs }) => {
       <FormControl fullWidth hiddenLabel>
         <InputBase
           classes={{ root: classes.input }}
-          placeholder="Type something..."
+          placeholder='Type something...'
           value={text}
-          name="text"
-          autoComplete="off"
+          name='text'
+          autoComplete='off'
           onChange={handleChange}
         />
         <AddImages setImgs={setImgs} />
