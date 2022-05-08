@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box , IconButton } from '@material-ui/core';
@@ -25,17 +25,16 @@ const useStyles = makeStyles((theme) => ({
 
 const AddImages = ({setImgs}) => {
   const inputRef = useRef(null);
+  const [files, setFiles] = useState('')
   const classes = useStyles();
   const handleClick = (e) => {
     inputRef.current.click();
   }
   const handleChange = (e) => {
-    const files = e.target.files
-    Array.from(files).forEach((file) =>
+    Array.from(e.target.files).forEach((file) =>
       setImgs((prev) => [...prev, {file, url: URL.createObjectURL(file)}] )
     )
-    e.target.value = '';
-
+    setFiles('');
   }
   return (
     <Box className={classes.iconsContainer}>
@@ -47,6 +46,7 @@ const AddImages = ({setImgs}) => {
       type='file' 
       accept='image/png, image/jpeg'
       multiple
+      value={files}
       className={classes.input}
       onChange={handleChange}/>
     </Box>
