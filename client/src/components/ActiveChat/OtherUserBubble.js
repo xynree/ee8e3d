@@ -46,10 +46,11 @@ const OtherUserBubble = ({ text, time, otherUser, imgs }) => {
         {(imgs || text) && <Typography className={classes.usernameDate}>
           {otherUser.username} {time}
         </Typography>}
-        {imgs && <ImageMessages imgs={imgs}/>}
+        {(imgs && imgs.length === 1) && <ImageMessages imgs={imgs} />}
         <Box className={classes.bubble}>
           {text && <Typography className={classes.text}>{text}</Typography>}
         </Box>
+        {(imgs && imgs.length > 1) && <ImageMessages imgs={imgs} />}
       </Box>
     </Box>
   );

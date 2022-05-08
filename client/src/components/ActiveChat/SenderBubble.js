@@ -34,10 +34,11 @@ const SenderBubble = ({ time, text, imgs }) => {
   return (
     <Box className={classes.root}>
       {(imgs || text) && <Typography className={classes.date}>{time}</Typography>}
-      {imgs && <ImageMessages imgs={imgs} />}
+      {(imgs && imgs.length === 1) && <ImageMessages imgs={imgs} />}
       <Box className={classes.bubble}>
         {text && <Typography className={classes.text}>{text}</Typography>}
       </Box>
+      {(imgs && imgs.length > 1) && <ImageMessages imgs={imgs} />}
     </Box>
   );
 };
