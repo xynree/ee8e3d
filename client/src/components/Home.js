@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Grid, CssBaseline, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import moment from 'moment';
+import moment from "moment";
 
 import { SidebarContainer } from "../components/Sidebar";
 import { ActiveChat } from "../components/ActiveChat";
@@ -64,17 +64,22 @@ const Home = ({ user, logout }) => {
     });
   };
 
-  const postImgs = (imgs) => imgs.map(
-    ({file}) => {
-      const form = new FormData();
-      form.append('file',  file)
-      form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-      form.append('api_key', process.env.REACT_APP_API_KEY)
-      form.append('folder', process.env.REACT_APP_CLOUDINARY_FOLDER)
+  const postImgs = (imgs) =>
+    imgs.map(({ file }) => {
+      try {
+        const form = new FormData();
+        form.append("file", file);
+        form.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+        form.append("api_key", process.env.REACT_APP_API_KEY);
+        form.append("folder", process.env.REACT_APP_CLOUDINARY_FOLDER);
 
-      return instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
-            .then(({data}) => data.secure_url)
-  })
+        return instance
+          .post(process.env.REACT_APP_CLOUDINARY_URL, form)
+          .then(({ data }) => data.secure_url);
+      } catch (error) {
+        return console.error(error);
+      }
+    });
 
   const postMessage = async (body) => {
     try {
@@ -92,52 +97,48 @@ const Home = ({ user, logout }) => {
     }
   };
 
-  const addNewConvo = useCallback(
-    (recipientId, message) => {
-      setConversations((prev) =>
+  const addNewConvo = useCallback((recipientId, message) => {
+    setConversations((prev) =>
       prev.map((convo) => {
         if (convo.otherUser.id === recipientId) {
-          const convoCopy = { ...convo }
-          convoCopy.messages = [...convoCopy.messages, message]
+          const convoCopy = { ...convo };
+          convoCopy.messages = [...convoCopy.messages, message];
           convoCopy.latestMessageText = message.text;
           convoCopy.id = message.conversationId;
           return convoCopy;
         } else {
           return convo;
         }
-      }),
-      );
-    }, [],
-  );
+      })
+    );
+  }, []);
 
-  const addMessageToConversation = useCallback(
-    (data) => {
-      // if sender isn't null, that means the message needs to be put in a brand new convo
-      const { message, sender = null } = data;
-      if (sender !== null) {
-        const newConvo = {
-          id: message.conversationId,
-          otherUser: sender,
-          messages: [message],
-        };
-        newConvo.latestMessageText = message.text;
-        setConversations((prev) => [newConvo, ...prev]);
-      }
+  const addMessageToConversation = useCallback((data) => {
+    // if sender isn't null, that means the message needs to be put in a brand new convo
+    const { message, sender = null } = data;
+    if (sender !== null) {
+      const newConvo = {
+        id: message.conversationId,
+        otherUser: sender,
+        messages: [message],
+      };
+      newConvo.latestMessageText = message.text;
+      setConversations((prev) => [newConvo, ...prev]);
+    }
 
-      setConversations((prev) =>
+    setConversations((prev) =>
       prev.map((convo) => {
         if (convo.id === message.conversationId) {
-          const convoCopy = { ...convo }
-          convoCopy.messages = [...convoCopy.messages, message]
+          const convoCopy = { ...convo };
+          convoCopy.messages = [...convoCopy.messages, message];
           convoCopy.latestMessageText = message.text;
           return convoCopy;
         } else {
           return convo;
         }
-      }),
-      );
-    }, [],
-  );
+      })
+    );
+  }, []);
 
   const setActiveChat = (username) => {
     setActiveConversation(username);
@@ -153,7 +154,7 @@ const Home = ({ user, logout }) => {
         } else {
           return convo;
         }
-      }),
+      })
     );
   }, []);
 
@@ -167,7 +168,7 @@ const Home = ({ user, logout }) => {
         } else {
           return convo;
         }
-      }),
+      })
     );
   }, []);
 
@@ -205,11 +206,12 @@ const Home = ({ user, logout }) => {
     const fetchConversations = async () => {
       try {
         const { data } = await axios.get("/api/conversations");
-        const sortedData = data.map((convo) => 
-          ({...convo, 
-            messages: convo.messages.sort((prev,curr) => 
-            moment(prev.createdAt).isAfter(curr) ? -1 : 1)
-          }))
+        const sortedData = data.map((convo) => ({
+          ...convo,
+          messages: convo.messages.sort((prev, curr) =>
+            moment(prev.createdAt).isAfter(curr) ? -1 : 1
+          ),
+        }));
         setConversations(sortedData);
       } catch (error) {
         console.error(error);
