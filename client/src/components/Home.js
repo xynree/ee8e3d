@@ -65,20 +65,14 @@ const Home = ({ user, logout }) => {
   };
 
   const postImgs = (imgs) => imgs.map(
-    async ({file}) => {
-      try {
-        const form = new FormData();
-        form.append('file',  file)
-        form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-        form.append('api_key', process.env.REACT_APP_API_KEY)
-        form.append('folder', process.env.REACT_APP_CLOUDINARY_FOLDER)
+    ({file}) => {
+      const form = new FormData();
+      form.append('file',  file)
+      form.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+      form.append('api_key', process.env.REACT_APP_API_KEY)
+      form.append('folder', process.env.REACT_APP_CLOUDINARY_FOLDER)
 
-        const { data } = await instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
-
-        return data.secure_url
-      } catch (error) {
-        console.error(error);
-      }
+      return instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
   })
 
   const postMessage = async (body) => {
