@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
   bubble: {
     background: '#F4F6FA',
     borderRadius: '10px 10px 0 10px',
+    marginBottom: 5,
   },
 }));
 
