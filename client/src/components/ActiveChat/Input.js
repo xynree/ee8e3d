@@ -48,7 +48,6 @@ const Input = ({ otherUser, conversationId, user, postMessage, postImgs }) => {
     let urls;
     if (imgsCopy.length) {
       urls = await Promise.all(postImgs(imgsCopy))
-      urls = urls.map((url) => url.data.secure_url)
     }
 
     const reqBody = {

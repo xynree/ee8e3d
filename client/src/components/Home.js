@@ -73,6 +73,7 @@ const Home = ({ user, logout }) => {
       form.append('folder', process.env.REACT_APP_CLOUDINARY_FOLDER)
 
       return instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
+            .then(({data}) => data.secure_url)
   })
 
   const postMessage = async (body) => {
