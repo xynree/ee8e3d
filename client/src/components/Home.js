@@ -25,6 +25,8 @@ const Home = ({ user, logout }) => {
   const classes = useStyles();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const instance = axios.create();
+
   const addSearchedUsers = (users) => {
     const currentUsers = {};
 
@@ -63,7 +65,7 @@ const Home = ({ user, logout }) => {
   };
 
   const postImgs = (imgs) => imgs.map(
-    async ({file})=> {
+    async ({file}) => {
       try {
         const form = new FormData();
         form.append('file',  file)
@@ -71,7 +73,6 @@ const Home = ({ user, logout }) => {
         form.append('api_key', process.env.REACT_APP_API_KEY)
         form.append('folder', process.env.REACT_APP_CLOUDINARY_FOLDER)
 
-        const instance = axios.create()
         const { data } = await instance.post(process.env.REACT_APP_CLOUDINARY_URL,form)
 
         return data.secure_url
