@@ -66,19 +66,16 @@ const Home = ({ user, logout }) => {
 
   const postImgs = (imgs) =>
     imgs.map(({ file }) => {
-      try {
-        const form = new FormData();
-        form.append("file", file);
-        form.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
-        form.append("api_key", process.env.REACT_APP_API_KEY);
-        form.append("folder", process.env.REACT_APP_CLOUDINARY_FOLDER);
+      const form = new FormData();
+      form.append("file", file);
+      form.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+      form.append("api_key", process.env.REACT_APP_API_KEY);
+      form.append("folder", process.env.REACT_APP_CLOUDINARY_FOLDER);
 
-        return instance
-          .post(process.env.REACT_APP_CLOUDINARY_URL, form)
-          .then(({ data }) => data.secure_url);
-      } catch (error) {
-        return console.error(error);
-      }
+      return instance
+        .post(process.env.REACT_APP_CLOUDINARY_URL, form)
+        .then(({ data }) => data.secure_url)
+        .catch(console.error);
     });
 
   const postMessage = async (body) => {
