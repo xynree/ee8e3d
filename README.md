@@ -1,80 +1,24 @@
 # Messenger
 
-A one-to-one realtime chat app.
+A one-to-one realtime chat app. Functionality added for assessment from Hatchways.io.
 
-## Local Setup
+## My Contributions
 
-Create the PostgreSQL database (these instructions may need to be adapted for your operating system):
+__Bug Fix: Sending/Loading Messages__
 
-```
-psql
-CREATE DATABASE messenger;
-\q
-```
+Adjusted posting function to handle a promise asynchronously with async/await.
+Changed new message functions to functionally map to fresh state variables instead of mutating state.
+Messages sort with `Moment.js` functions at the fetch before mapping to message UI.
 
-Alternatively, if you have docker installed, you can use it to spawn a postgres instance on your machine:
+__Feature: UI Implementation__
 
-```
-docker run -it -p 5432:5432 -e POSTGRES_DB=<database-name> -e POSTGRES_USER=<database-username> -e POSTGRES_PASSWORD=<database-password> postgres -c log_statement=all
-```
+Login and Signup pages are set up to match the Figma [spec](https://www.figma.com/file/LnznWRFvyfWO5Mzztz5TzQ/translate-messenger?node-id=0%3A1) provided in #3 Issue.
 
-Update db.js to connect with your local PostgreSQL set up. The [Sequelize documentation](https://sequelize.org/master/manual/getting-started.html) can help with this.
+<img height="350" alt="image" src="https://user-images.githubusercontent.com/77255525/166183895-bd859e51-319a-4652-817e-578219a88171.png"> <img height="350" alt="image" src="https://user-images.githubusercontent.com/77255525/166184014-daa6aeb5-f728-4ffb-8708-4d402cd37832.png">
 
-Create a .env file in the server directory and add your session secret (this can be any string):
+__Feature: Image Messaging__
 
-```
-SESSION_SECRET = "your session secret"
-```
+UI displays a preview attachment image for uploading a file before submitting a `POST` request to upload the image to a Cloudinary host. The image sent in the chat display message includes a functional modal to view at a larger size.
 
-In the server folder, install dependencies and then seed the database:
-
-```
-cd server
-npm install
-npm run seed
-```
-
-In the client folder, install dependencies:
-
-```
-cd client
-npm install
-```
-
-### Running the Application Locally
-
-In one terminal, start the front end:
-
-```
-cd client
-npm start
-```
-
-In a separate terminal, start the back end:
-
-```
-cd server
-npm run dev
-```
-
-## How to Run E2E Tests
-
-1. Seed the database with `npm run seed` in `server` directory.
-1. Start the backend server with `npm run dev` in `server` directory.
-1. Start the frontend server with `npm start` in `client` directory.
-1. Open Cypress dashboard with `npx cypress open` in `client` directory.
-1. Click on the test suite to run (e.g. `auth.spec.js`).
-
-#### Notes
-
-- You need to seed the database before each run. Because E2E test cases writes data to
-  the actual database, re-seeding is necessary to assure consistent test results.
-- The E2E tests are not comprehensive.
-  There is a test for the authentication pages that should pass with the starting code,
-  and some tests for some of the functionality for some of the tickets you will be assigned.
-- When you push your changes to GitHub, E2E tests are automatically executed on GitHub Actions.
-  You can find test results under Pull request > Checks > test > Cypress (see screenshots below).
-
-![image](https://user-images.githubusercontent.com/8978815/136117299-b45a61ce-0b5c-495f-b572-05ad80b78a28.png)
-![image](https://user-images.githubusercontent.com/8978815/136119935-4b941f87-0015-48c5-b93e-5bd0bcbbd64b.png)
-
+![image](https://user-images.githubusercontent.com/77255525/167200769-78c4ab20-5beb-4c0d-83a2-ec255425d5ac.png)
+![image](https://user-images.githubusercontent.com/77255525/167200201-cf852f99-babe-4c4f-ba04-9e49dd1c58b2.png)
