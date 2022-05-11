@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   prompt: {
-    color: theme.palette.info.main,
+    color: theme.palette.secondary.main,
     fontSize: theme.typography.fontSize,
     [theme.breakpoints.between('xs', 'sm')]: {
       fontSize: '13px'

@@ -24,6 +24,7 @@ const ActiveChat = ({
   conversations,
   activeConversation,
   postMessage,
+  postImgs
 }) => {
   const classes = useStyles();
 
@@ -58,6 +59,7 @@ const ActiveChat = ({
                   conversationId={conversation.id || null}
                   user={user}
                   postMessage={postMessage}
+                  postImgs={postImgs}
                 />
               </>
             )}
